@@ -56,21 +56,29 @@ Here the Boathouse API is called using the Paddle Customer ID which in your app 
 
 If you have not subscribed this page will show you the pricing table (in checkout mode) which will allow you to subscribe to one of the configured plans.
 
+This account page requires PaddleJS to be installed and configured in order for the checkout to succeed. **For NextJS this requires a client component which is implemented as PaddleClient.tsx.** You will need to replace the token with your own from the Paddle account. If you are moving to production remove the first line which sets the environment to "sandbox".
 
+    <Script
+        src="https://cdn.paddle.com/paddle/v2/paddle.js"
+        onLoad={() => {
+          (window as any).Paddle.Environment.set("sandbox");
+          (window as any).Paddle.Initialize({
+            token: "test_ad79b30a7bab65b54ee5213f2b5",
+            eventCallback: (e: {
+              name: string;
+              data: { items: { price_id: string }[] };
+            }) => {
+              if (e.name == "checkout.completed")
+                location.href =
+                  "processing?pids=" +
+                  e.data.items
+                    .map((x: { price_id: string }) => x.price_id)
+                    .join(",");
+            },
+          });
+        }}
+      />
 
-This account page requires PaddleJS to be installed and configured in order for the checkout to succeed. You will need to replace the token with your own from the Paddle account. If you are moving to production remove the first line which sets the environment to "sandbox".
-
-    <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
-    <script type="text/javascript">
-    Paddle.Environment.set("sandbox");
-    Paddle.Initialize({
-        token: '<YOUR-PADDLE-CLIENT-TOKEN>',
-        eventCallback: (e) => {
-            if (e.name == "checkout.completed") 
-                location.href = "processing?pids=" + e.data.items.map(x => x.price_id).join(",");
-        }
-    });
-    </script>
 
 ### Processing Page
 
