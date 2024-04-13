@@ -63,7 +63,7 @@ This account page requires PaddleJS to be installed and configured in order for 
         onLoad={() => {
           (window as any).Paddle.Environment.set("sandbox");
           (window as any).Paddle.Initialize({
-            token: "test_ad79b30a7bab65b54ee5213f2b5",
+            token: "<YOUR-PADDLE-CLIENT-TOKEN>",
             eventCallback: (e: {
               name: string;
               data: { items: { price_id: string }[] };
