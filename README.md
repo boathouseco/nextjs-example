@@ -1,4 +1,4 @@
-# NextJS Implementation Example for Boathouse Customer Portal for Paddle 
+# NextJS Implementation Example for Boathouse Customer Portal for Paddle
 
 This code will show you all parts necessary to implement Boathouse in your own application:
 
@@ -7,19 +7,26 @@ This code will show you all parts necessary to implement Boathouse in your own a
 - Adding the pricing table to your app in order to allow user's to subscribe (checkout mode).
 - Adding PaddleJS to your app.
 
-## Prerequisites
+## How to use
+
+### Configuration
+
+Copy .env.example to .env and enter your Boathouse Portal ID and Secret.
+
+    BOATHOUSE_API="https://my.boathouse.pro/api/v1"
+    BOATHOUSE_PORTAL_ID=""
+    BOATHOUSE_SECRET=""
+
+### Prerequisites
 
 - A Paddle Account (can be a [sandbox account](https://sandbox-login.paddle.com/signup)),
 - at least one product and price configured in Paddle,
 - and a [Boathouse Account](https://www.boathouse.pro) with one plan referencing the Paddle price.
 
-## Configuration 
+### Run
 
-Copy .env.example to .env and enter your Boathouse Portal ID and Secret. 
-
-    BOATHOUSE_API="https://my.boathouse.pro/api/v1"
-    BOATHOUSE_PORTAL_ID=""
-    BOATHOUSE_SECRET=""
+- Copy .env.example to .env
+- Run `npm run start`
 
 ## Recommended Paddle and Boathouse Setup
 
@@ -29,7 +36,7 @@ For the purposes of this example it's recommend to create two products in Paddle
 2. Name "Large" which has two prices: "Large-Monthly" and "Large-Annual"
 
 In Boathouse proceed to the Plans page and add three plans. Set the first one to "Free".
-For the second choose "Small-Monthly", click "Customize" and select "Small-Annual" as the corresponding annual plan. 
+For the second choose "Small-Monthly", click "Customize" and select "Small-Annual" as the corresponding annual plan.
 Repeat for "Large-Monthly" and "Large-Annual".
 
 ## Architecture
@@ -42,7 +49,7 @@ This simulates the logged-out state and will show the pricing table via an IFRAM
 
 The createAccountUrl passed to the IFRAME url references the login page (see next heading).
 
-### Login Page 
+### Login Page
 
 This page shows a button which simulates a login. For this example it will simply create a Paddle customer via the Boathouse API (using a random email address) and store the Paddle Customer ID in the browser's cookie. This cookie will imply the user is now logged in.
 
@@ -78,7 +85,6 @@ This account page requires PaddleJS to be installed and configured in order for 
           });
         }}
       />
-
 
 ### Processing Page
 
