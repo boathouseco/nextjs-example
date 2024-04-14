@@ -50,7 +50,9 @@ export default function Home() {
 
         {createAccountUrl && (
           <iframe
-            src={`https://my.boathouse.pro/api/v1/pricingtableiframe?p=7844a538-d99e-4dee-b296-08dc57f5b69a&l=${createAccountUrl}&s=https%3A%2F%2Fmy.boathouse.pro%2Fcss%2Fpricing-table-default.css`}
+            src={`https://my.boathouse.pro/api/v1/pricingtableiframe?p=7844a538-d99e-4dee-b296-08dc57f5b69a&l=${encodeURIComponent(
+              createAccountUrl
+            )}&s=https%3A%2F%2Fmy.boathouse.pro%2Fcss%2Fpricing-table-default.css`}
             frameBorder="0"
             style={{ width: "100%", height: "500px" }}
           ></iframe>
